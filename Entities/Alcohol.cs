@@ -16,7 +16,7 @@ namespace zpo_projekt.Entities
 
         public double Percentage { get; set; }
 
-        public string Type { get; set; }
+        public int Type { get; set; }
 
         public string? Description { get; set; }
     }
