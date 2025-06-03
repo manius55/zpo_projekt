@@ -1,9 +1,2 @@
-
-
-
-## Zale¿noœci w projekcie
-* Microsoft.EntityFrameworkCore.Sqlite  9.0.5
-* Microsoft.EntityFrameworkCore
-* Microsoft.EntityFrameworkCore.Design 9.0.5
-* Microsoft.EntityFrameworkCore.Tools 9.0.5
-* Microsoft.EntityFrameworkCore.Sqlite.Core
+## Baza danych
+* inicjalne wartosci do bazy danych sa w pliku init_sample_data.sql, ale mozna po prostu samemu stworzyc wszystko od zera.
