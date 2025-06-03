@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Windows.Forms;
+using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
 
 namespace zpo_projekt
@@ -15,7 +16,15 @@ namespace zpo_projekt
         private void loadFormData(object sender, EventArgs e)
         {
             var context = new AlcoholsDbContext();
-            List<Alcohol> alcohols = context.Alcohols.ToList();
+            List<Alcohol> alcoholsEntities = context.Alcohols.ToList();
+            List<BaseAlcohol> alcohols = new List<BaseAlcohol>();
+
+            foreach(Alcohol alcoholEntity in alcoholsEntities)
+            {
+                BaseAlcohol alcohol = AlcoholFactory.get(alcoholEntity);
+                alcohols.Add(alcohol);
+                Debug.WriteLine($"Jaki to alkohol: {alcohol.GetType()}  {alcohol.TypeName}");
+            }
 
             DataGridView alcoholsGridView = alcoholsList;
             alcoholsGridView.AutoGenerateColumns = false;
@@ -35,7 +44,7 @@ namespace zpo_projekt
             percentageColumn.ReadOnly = true;
 
             var typeColumn = new DataGridViewTextBoxColumn();
-            typeColumn.DataPropertyName = "Type";
+            typeColumn.DataPropertyName = "TypeName";
             typeColumn.HeaderText = "Typ alkoholu";
             typeColumn.ReadOnly = true;
 
