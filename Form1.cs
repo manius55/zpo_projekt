@@ -22,20 +22,22 @@ namespace zpo_projekt
 
             var idColumn = new DataGridViewTextBoxColumn();
             idColumn.DataPropertyName = "Id";
-            idColumn.HeaderText="ID";
             idColumn.Visible = false; //bez sensu pokazywac uzytkownikowi id
 
             var nameColumn = new DataGridViewTextBoxColumn();
             nameColumn.DataPropertyName = "Name";
             nameColumn.HeaderText = "Nazwa";
+            nameColumn.ReadOnly = true;
 
             var percentageColumn = new DataGridViewTextBoxColumn();
             percentageColumn.DataPropertyName = "Percentage";
             percentageColumn.HeaderText = "Zawartoœæ alkoholu";
+            percentageColumn.ReadOnly = true;
 
             var typeColumn = new DataGridViewTextBoxColumn();
             typeColumn.DataPropertyName = "Type";
             typeColumn.HeaderText = "Typ alkoholu";
+            typeColumn.ReadOnly = true;
 
             alcoholsGridView.Columns.Add(idColumn);
             alcoholsGridView.Columns.Add(typeColumn);
