@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace zpo_projekt.Exceptions
 {
-    internal class UnknownAlcoholTypeException
+    internal class UnknownAlcoholTypeException: Exception
     {
     }
 }
