@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,18 @@ namespace zpo_projekt
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=alcohols.db");
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+           
+            var projectDir = Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
+            var dbPath = Path.Combine(projectDir, "alcohols.db");
+
+            Debug.WriteLine(baseDir);
+            Debug.WriteLine(projectDir);
+            Debug.WriteLine(dbPath);
+
+            MessageBox.Show($"Using DB at: {dbPath}");
+            Debug.WriteLine($"Using DB at: {dbPath}");
+            optionsBuilder.UseSqlite($"Data Source={dbPath}");
         }
     }
 }
