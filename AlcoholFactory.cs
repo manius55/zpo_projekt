@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using zpo_projekt.Alcohols;
+using zpo_projekt.Entities;
+using zpo_projekt.Exceptions;
+
+namespace zpo_projekt
+{
+    internal static class AlcoholFactory
+    {
+        public static BaseAlcohol get(Alcohol alcoholEntity)
+        {
+            switch (alcoholEntity.Type)
+            {
+                case 1:
+                    return new Beer(alcoholEntity);
+                case 2:
+                    return new Whiskey(alcoholEntity);
+                case 3:
+                    return new Vodka(alcoholEntity);
+                case 4:
+                    return new Wine(alcoholEntity);
+                case 5:
+                    return new Champaign(alcoholEntity);
+                default:
+                    throw new UnknownAlcoholTypeException();
+            }
+        }
+    }
+}
