@@ -26,6 +26,8 @@ namespace zpo_projekt.Alcohols
             this.TypeName = getInitialTypeName(alcohol.Type);
         }
 
+        private BaseAlcohol() { }
+
         abstract public int MaxPercentageAllowed();
         public string getInitialTypeName(int alcoholType)
         {
