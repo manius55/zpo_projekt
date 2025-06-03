@@ -28,12 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            alcoholsList = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)alcoholsList).BeginInit();
+            SuspendLayout();
+            // 
+            // alcoholsList
+            // 
+            alcoholsList.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            alcoholsList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            alcoholsList.Location = new Point(221, 73);
+            alcoholsList.Name = "alcoholsList";
+            alcoholsList.RowHeadersWidth = 51;
+            alcoholsList.Size = new Size(684, 546);
+            alcoholsList.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1119, 700);
+            Controls.Add(alcoholsList);
+            Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)alcoholsList).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView alcoholsList;
     }
 }
