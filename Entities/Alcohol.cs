@@ -18,6 +18,6 @@ namespace zpo_projekt.Entities
 
         public string Type { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

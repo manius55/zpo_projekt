@@ -18,8 +18,8 @@ namespace zpo_projekt.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false, maxLength: 100),
                     Percentage = table.Column<double>(type: "REAL", nullable: false),
-                    Type = table.Column<string>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
