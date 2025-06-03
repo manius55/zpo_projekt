@@ -7,15 +7,15 @@ using zpo_projekt.Entities;
 
 namespace zpo_projekt.Alcohols
 {
-    internal class Beer : BaseAlcohol
+    internal class Vodka : BaseAlcohol
     {
-        public Beer(Alcohol alcohol) : base(alcohol)
+        public Vodka(Alcohol alcohol) : base(alcohol)
         {
         }
 
         public override int MaxPercentageAllowed()
         {
-            return 16;
+            return 45;
         }
     }
 }
