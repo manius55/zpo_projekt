@@ -16,14 +16,13 @@ namespace zpo_projekt
         private void loadFormData(object sender, EventArgs e)
         {
             var context = new AlcoholsDbContext();
-            List<Alcohol> alcoholsEntities = context.Alcohols.ToList();
-            List<BaseAlcohol> alcohols = new List<BaseAlcohol>();
+            List<AlcoholEntity> alcoholsEntities = context.Alcohols.ToList();
+            List<Alcohol> alcohols = new List<Alcohol>();
 
-            foreach(Alcohol alcoholEntity in alcoholsEntities)
+            foreach(AlcoholEntity alcoholEntity in alcoholsEntities)
             {
-                BaseAlcohol alcohol = AlcoholFactory.get(alcoholEntity);
+                Alcohol alcohol = AlcoholFactory.get(alcoholEntity);
                 alcohols.Add(alcohol);
-                Debug.WriteLine($"Jaki to alkohol: {alcohol.GetType()}  {alcohol.TypeName}");
             }
 
             DataGridView alcoholsGridView = alcoholsList;

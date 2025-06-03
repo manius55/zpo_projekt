@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace zpo_projekt.Entities
 {
-    public class Alcohol
+    public class AlcoholEntity
     {
         public int Id { get; set; }
 

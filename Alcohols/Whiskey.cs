@@ -7,9 +7,9 @@ using zpo_projekt.Entities;
 
 namespace zpo_projekt.Alcohols
 {
-    internal class Whiskey : BaseAlcohol
+    internal class Whiskey : Alcohol
     {
-        public Whiskey(Alcohol alcohol) : base(alcohol)
+        public Whiskey(AlcoholEntity alcohol) : base(alcohol)
         {
         }
 

@@ -8,16 +8,16 @@ using zpo_projekt.Exceptions;
 
 namespace zpo_projekt.Alcohols
 {
-    abstract internal class BaseAlcohol
+    abstract internal class Alcohol
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
         public double Percentage { get; set; }
         public string TypeName { get; set; }
-        public Alcohol AlcoholEntity { get; set; }
+        public AlcoholEntity AlcoholEntity { get; set; }
 
-        public BaseAlcohol(Alcohol alcohol)
+        public Alcohol(AlcoholEntity alcohol)
         {
             this.AlcoholEntity = alcohol;
             this.Id = alcohol.Id;
@@ -27,7 +27,7 @@ namespace zpo_projekt.Alcohols
             this.TypeName = getInitialTypeName(alcohol.Type);
         }
 
-        private BaseAlcohol() { }
+        private Alcohol() { }
 
         abstract public int MaxPercentageAllowed();
         public string getInitialTypeName(int alcoholType)

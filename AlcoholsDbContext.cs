@@ -13,7 +13,7 @@ namespace zpo_projekt
 {
     public class AlcoholsDbContext: DbContext
     {
-        public DbSet<Alcohol> Alcohols { get; set; }
+        public DbSet<AlcoholEntity> Alcohols { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
