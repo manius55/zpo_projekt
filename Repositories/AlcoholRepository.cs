@@ -11,7 +11,7 @@ namespace zpo_projekt.Repositories
 {
     internal class AlcoholRepository: Repository<AlcoholEntity>
     {
-        public AlcoholRepository(DbContext dbContext) : base(dbContext)
+        public AlcoholRepository() : base(new AlcoholsDbContext())
         {
         }
 

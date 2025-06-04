@@ -11,7 +11,7 @@ namespace zpo_projekt
 {
     internal static class AlcoholFactory
     {
-        public static Alcohol get(AlcoholEntity alcoholEntity)
+        public static Alcohol make(AlcoholEntity alcoholEntity)
         {
             switch (alcoholEntity.Type)
             {

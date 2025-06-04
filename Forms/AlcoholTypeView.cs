@@ -5,9 +5,9 @@ using zpo_projekt.Entities;
 
 namespace zpo_projekt
 {
-    public partial class Form1 : Form
+    public partial class AlcoholTypeView : Form
     {
-        public Form1()
+        public AlcoholTypeView()
         {
             InitializeComponent();
             this.Load += loadFormData;
@@ -21,7 +21,7 @@ namespace zpo_projekt
 
             foreach(AlcoholEntity alcoholEntity in alcoholsEntities)
             {
-                Alcohol alcohol = AlcoholFactory.get(alcoholEntity);
+                Alcohol alcohol = AlcoholFactory.make(alcoholEntity);
                 alcohols.Add(alcohol);
             }
 

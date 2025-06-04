@@ -1,3 +1,5 @@
+using zpo_projekt.Forms;
+
 namespace zpo_projekt
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace zpo_projekt
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new AlcoholsTypesForm());
         }
     }
 }

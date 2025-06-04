@@ -15,6 +15,7 @@ namespace zpo_projekt.Alcohols
         public string? Description { get; set; }
         public double Percentage { get; set; }
         public string TypeName { get; set; }
+        public int Type { get; set; }
         public AlcoholEntity AlcoholEntity { get; set; }
 
         public Alcohol(AlcoholEntity alcohol)
@@ -24,6 +25,7 @@ namespace zpo_projekt.Alcohols
             this.Name = alcohol.Name;
             this.Description = alcohol.Description;
             this.Percentage = alcohol.Percentage;
+            this.Type = alcohol.Type;
             this.TypeName = getInitialTypeName(alcohol.Type);
         }
 
