@@ -16,20 +16,16 @@ namespace zpo_projekt.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false, maxLength: 100),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Percentage = table.Column<double>(type: "REAL", nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true)
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Count = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Alcohols", x => x.Id);
                 });
-
-                migrationBuilder.CreateIndex(
-                    name: "IX_Alcohols_Type",
-                    table: "Alcohols",
-                    column: "Type");
         }
 
         /// <inheritdoc />
