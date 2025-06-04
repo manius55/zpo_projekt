@@ -27,44 +27,24 @@ namespace zpo_projekt.Forms
         {
 
             List<AlcoholsTypesResource> sourceData = getSourceData();
-            //var context = new AlcoholsDbContext();
-            //List<AlcoholEntity> alcoholsEntities = context.Alcohols.ToList();
-            //List<Alcohol> alcohols = new List<Alcohol>();
 
-            //foreach (AlcoholEntity alcoholEntity in alcoholsEntities)
-            //{
-            //    Alcohol alcohol = AlcoholFactory.get(alcoholEntity);
-            //    alcohols.Add(alcohol);
-            //}
+            DataGridView alcoholsTypesGrid = alcoholsTypeForm;
+            alcoholsTypesGrid.AutoGenerateColumns = false;
 
-            //DataGridView alcoholsGridView = alcoholsList;
-            //alcoholsGridView.AutoGenerateColumns = false;
+            var alcoholTypeColumn = new DataGridViewTextBoxColumn();
+            alcoholTypeColumn.DataPropertyName = "TypeName";
+            alcoholTypeColumn.HeaderText = "Rodzaj alkoholu";
+            alcoholTypeColumn.ReadOnly = true;
 
-            //var idColumn = new DataGridViewTextBoxColumn();
-            //idColumn.DataPropertyName = "Id";
-            //idColumn.Visible = false; //bez sensu pokazywac uzytkownikowi id
+            var alcoholDifferentTypesCount = new DataGridViewTextBoxColumn();
+            alcoholDifferentTypesCount.DataPropertyName = "Count";
+            alcoholDifferentTypesCount.HeaderText = "Ilość różnych produktów";
+            alcoholDifferentTypesCount.ReadOnly = true;
 
-            //var nameColumn = new DataGridViewTextBoxColumn();
-            //nameColumn.DataPropertyName = "Name";
-            //nameColumn.HeaderText = "Nazwa";
-            //nameColumn.ReadOnly = true;
+            alcoholsTypesGrid.Columns.Add(alcoholTypeColumn);
+            alcoholsTypesGrid.Columns.Add(alcoholDifferentTypesCount);
 
-            //var percentageColumn = new DataGridViewTextBoxColumn();
-            //percentageColumn.DataPropertyName = "Percentage";
-            //percentageColumn.HeaderText = "Zawartość alkoholu";
-            //percentageColumn.ReadOnly = true;
-
-            //var typeColumn = new DataGridViewTextBoxColumn();
-            //typeColumn.DataPropertyName = "TypeName";
-            //typeColumn.HeaderText = "Typ alkoholu";
-            //typeColumn.ReadOnly = true;
-
-            //alcoholsGridView.Columns.Add(idColumn);
-            //alcoholsGridView.Columns.Add(typeColumn);
-            //alcoholsGridView.Columns.Add(nameColumn);
-            //alcoholsGridView.Columns.Add(percentageColumn);
-
-            //alcoholsGridView.DataSource = alcohols;
+            alcoholsTypesGrid.DataSource = sourceData;
         }
 
         private List<AlcoholsTypesResource> getSourceData()
