@@ -1,3 +1,3 @@
-INSERT INTO Alcohols (Name, Percentage, Type, Description) VALUES ('Lech', 5.5, 1, 'Aged whiskey');
-INSERT INTO Alcohols (Name, Percentage, Type, Description) VALUES ('Warka', 5.0, 1, NULL);
-INSERT INTO Alcohols (Name, Percentage, Type, Description) VALUES ('Carlo Rossi', 12.5, 2, 'tanie bylo');
+INSERT INTO Alcohols (Name, Percentage, Type, Count, Description) VALUES ('Lech', 5.5, 1, 2, 'Aged whiskey'),
+  ('Warka', 5.0, 1, 1, NULL),
+  ('Carlo Rossi', 12.5, 2, 4, 'tanie bylo');

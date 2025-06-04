@@ -17,6 +17,7 @@ namespace zpo_projekt.Alcohols
         public string TypeName { get; set; }
         public int Type { get; set; }
         public AlcoholEntity AlcoholEntity { get; set; }
+        public int Count { get; set; }
 
         public Alcohol(AlcoholEntity alcohol)
         {
@@ -27,6 +28,7 @@ namespace zpo_projekt.Alcohols
             this.Percentage = alcohol.Percentage;
             this.Type = alcohol.Type;
             this.TypeName = getInitialTypeName(alcohol.Type);
+            this.Count = alcohol.Count;
         }
 
         private Alcohol() { }

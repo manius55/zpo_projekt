@@ -37,12 +37,18 @@ namespace zpo_projekt.Forms
             alcoholTypeColumn.ReadOnly = true;
 
             var alcoholDifferentTypesCount = new DataGridViewTextBoxColumn();
-            alcoholDifferentTypesCount.DataPropertyName = "Count";
+            alcoholDifferentTypesCount.DataPropertyName = "DifferentProductsCount";
             alcoholDifferentTypesCount.HeaderText = "Ilość różnych produktów";
             alcoholDifferentTypesCount.ReadOnly = true;
 
+            var alcoholproductsCount = new DataGridViewTextBoxColumn();
+            alcoholproductsCount.DataPropertyName = "ProductsCount";
+            alcoholproductsCount.HeaderText = "Ilość łączna produktów";
+            alcoholproductsCount.ReadOnly = true;
+
             alcoholsTypesGrid.Columns.Add(alcoholTypeColumn);
             alcoholsTypesGrid.Columns.Add(alcoholDifferentTypesCount);
+            alcoholsTypesGrid.Columns.Add(alcoholproductsCount);
 
             alcoholsTypesGrid.DataSource = sourceData;
         }
@@ -83,10 +89,16 @@ namespace zpo_projekt.Forms
 
                 if (alcoholTypeList.Count > 0)
                 {
+                    int productsCount = 0;
+                    foreach (var alcohol in alcoholTypeList)
+                    {
+                        productsCount += alcohol.Count;
+                    }
                     AlcoholsTypesResource resource = new AlcoholsTypesResource(
                         (int)type,
                         alcoholTypeList.Count,
-                        alcoholTypeList[0].TypeName
+                        alcoholTypeList[0].TypeName,
+                        productsCount
                     );
                     alcoholsTypesResources.Add(resource);
                 }
@@ -95,7 +107,8 @@ namespace zpo_projekt.Forms
                     AlcoholsTypesResource resource = new AlcoholsTypesResource(
                         (int)type,
                         0,
-                        type.ToString()
+                        type.ToString(),
+                        0
                     );
                     alcoholsTypesResources.Add(resource);
                 }

@@ -9,14 +9,16 @@ namespace zpo_projekt
     internal class AlcoholsTypesResource
     {
         public int Type { get; set; }
-        public int Count { get; set; }
+        public int DifferentProductsCount { get; set; }
         public string TypeName { get; set; }
+        public int ProductsCount { get; set; }
 
-        public AlcoholsTypesResource(int type, int count, string typeName)
+        public AlcoholsTypesResource(int type, int differentProductsCount, string typeName, int productCount)
         {
             Type = type;
-            Count = count;
+            DifferentProductsCount = differentProductsCount;
             TypeName = typeName;
+            ProductsCount = productCount;
         }
     }
 }
