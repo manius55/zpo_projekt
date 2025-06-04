@@ -35,6 +35,8 @@
             // alcoholsList
             // 
             alcoholsList.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            alcoholsList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            alcoholsList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             alcoholsList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             alcoholsList.Location = new Point(221, 73);
             alcoholsList.Name = "alcoholsList";
