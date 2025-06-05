@@ -124,6 +124,7 @@ namespace zpo_projekt.Forms
                     {
                         productsCount += alcohol.Count;
                     }
+                    
                     AlcoholsTypesResource resource = new AlcoholsTypesResource(
                         (int)type,
                         alcoholTypeList.Count,
@@ -137,7 +138,7 @@ namespace zpo_projekt.Forms
                     AlcoholsTypesResource resource = new AlcoholsTypesResource(
                         (int)type,
                         0,
-                        type.ToString(),
+                        GetAlcoholTypeName.Get((int)type),
                         0
                     );
                     alcoholsTypesResources.Add(resource);

@@ -27,30 +27,13 @@ namespace zpo_projekt.Alcohols
             this.Description = alcohol.Description;
             this.Percentage = alcohol.Percentage;
             this.Type = alcohol.Type;
-            this.TypeName = getInitialTypeName(alcohol.Type);
+            this.TypeName = GetAlcoholTypeName.Get(alcohol.Type);
             this.Count = alcohol.Count;
         }
 
-        private Alcohol() { }
-
-        abstract public int MaxPercentageAllowed();
-        public string getInitialTypeName(int alcoholType)
+        public virtual int MaxPercentageAllowed()
         {
-            switch (alcoholType)
-            {
-                case 1:
-                    return "Piwo";
-                case 2:
-                    return "Whisky";
-                case 3:
-                    return "Wódka";
-                case 4:
-                    return "Wino";
-                case 5:
-                    return "Szampan";
-                default:
-                    throw new UnknownAlcoholTypeException();
-            }
+            return 90;
         }
     }
 }
