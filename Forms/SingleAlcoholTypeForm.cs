@@ -71,22 +71,29 @@ namespace zpo_projekt
 
 
 
-            var buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.HeaderText = "Edycja";
-            buttonColumn.Text = "Edytuj";
-            buttonColumn.Name = "Edit";
+            var editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.HeaderText = "Edycja";
+            editButtonColumn.Text = "Edytuj";
+            editButtonColumn.Name = "Edit";
+            editButtonColumn.UseColumnTextForButtonValue = true;
 
-            buttonColumn.UseColumnTextForButtonValue = true;
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.HeaderText = "Usuwanie";
+            deleteButton.Text = "Usuñ";
+            deleteButton.Name = "Remove";
+            deleteButton.UseColumnTextForButtonValue = true;
 
             alcoholsGridView.Columns.Add(idColumn);
             alcoholsGridView.Columns.Add(typeColumn);
             alcoholsGridView.Columns.Add(nameColumn);
             alcoholsGridView.Columns.Add(percentageColumn);
             alcoholsGridView.Columns.Add(productsCount);
-            alcoholsGridView.Columns.Add(buttonColumn);
+            alcoholsGridView.Columns.Add(editButtonColumn);
+            alcoholsGridView.Columns.Add(deleteButton);
 
 
             alcoholsGridView.CellContentClick += EditButtonClick;
+            alcoholsGridView.CellContentClick += DeleteButtonClick;
         }
 
         private void loadInitialFormData(object sender, EventArgs e)
@@ -105,7 +112,6 @@ namespace zpo_projekt
         {
             if (e.ColumnIndex == ((DataGridView)sender).Columns["Edit"].Index && e.RowIndex >= 0)
             {
-                Debug.WriteLine($"SPRAWDZAM ID: {((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value}");
                 string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
                 int alcoholIdInt = Convert.ToInt32(alcoholId);
 
@@ -114,6 +120,23 @@ namespace zpo_projekt
 
                 var editAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this, alcohol);
                 editAlcoholForm.ShowDialog();
+            }
+        }
+
+        private void DeleteButtonClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == ((DataGridView)sender).Columns["Remove"].Index && e.RowIndex >= 0)
+            {
+                string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                int alcoholIdInt = Convert.ToInt32(alcoholId);
+
+                var repository = new AlcoholRepository();
+                AlcoholEntity alcoholEntity = repository.getById(alcoholIdInt);
+                
+                repository.Remove(alcoholEntity);
+
+                MessageBox.Show("Uda³o siê usun¹æ produkt");
+                this.ReloadData();
             }
         }
     }
