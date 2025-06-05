@@ -11,20 +11,35 @@ namespace zpo_projekt
     public partial class SingleAlcoholTypeForm : Form
     {
         private AlcoholType AlcoholType { get; set; }
+        AlcoholsTypesForm ParentForm { get; set; }
 
-        public SingleAlcoholTypeForm(AlcoholType alcoholType)
+        public SingleAlcoholTypeForm(AlcoholType alcoholType, AlcoholsTypesForm alcoholsTypesForm)
         {
             this.AlcoholType = alcoholType;
             InitializeComponent();
-            this.Load += loadFormData;
+            this.Load += loadInitialFormData;
+            this.ParentForm = alcoholsTypesForm;
         }
 
         public void ReloadData()
+        {
+            LoadDataForForm();
+            ParentForm.Reload();
+        }
+        
+        private void LoadDataForForm()
         {
             List<AlcoholEntity> alcoholsEntities = (new AlcoholRepository()).getAllAlcoholsByType(AlcoholType);
             List<Alcohol> alcohols = AlcoholFromEntityMaker.make(alcoholsEntities);
 
 
+            DataGridView alcoholsGridView = alcoholsList;
+
+            alcoholsGridView.DataSource = alcohols;
+        }
+
+        private void InitStructure()
+        {
             DataGridView alcoholsGridView = alcoholsList;
             alcoholsGridView.AutoGenerateColumns = false;
 
@@ -59,12 +74,11 @@ namespace zpo_projekt
             alcoholsGridView.Columns.Add(nameColumn);
             alcoholsGridView.Columns.Add(percentageColumn);
             alcoholsGridView.Columns.Add(productsCount);
-
-            alcoholsGridView.DataSource = alcohols;
         }
 
-        private void loadFormData(object sender, EventArgs e)
+        private void loadInitialFormData(object sender, EventArgs e)
         {
+            InitStructure();
             ReloadData();
         }
 

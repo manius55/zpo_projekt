@@ -23,11 +23,23 @@ namespace zpo_projekt.Forms
             this.Load += loadFormData;
         }
 
+        public void Reload()
+        {
+            List<AlcoholsTypesResource> sourceData = getSourceData();
+            DataGridView alcoholsTypesGrid = alcoholsTypeForm;
+
+
+            alcoholsTypesGrid.DataSource = sourceData;
+        }
+
         private void loadFormData(object sender, EventArgs e)
         {
+            InitStructure();
+            Reload();
+        }
 
-            List<AlcoholsTypesResource> sourceData = getSourceData();
-
+        private void InitStructure()
+        {
             DataGridView alcoholsTypesGrid = alcoholsTypeForm;
             alcoholsTypesGrid.AutoGenerateColumns = false;
 
@@ -69,9 +81,6 @@ namespace zpo_projekt.Forms
 
 
             alcoholsTypesGrid.CellContentClick += showButtonClick;
-
-
-            alcoholsTypesGrid.DataSource = sourceData;
         }
 
         private List<AlcoholsTypesResource> getSourceData()
@@ -148,7 +157,7 @@ namespace zpo_projekt.Forms
                 int alcoholTypeInt = int.Parse(alcoholTypeString);
                 AlcoholType alcoholTypeEnum = (AlcoholType)alcoholTypeInt;
 
-                var singleAlcoholTypeForm = new SingleAlcoholTypeForm(alcoholTypeEnum);
+                var singleAlcoholTypeForm = new SingleAlcoholTypeForm(alcoholTypeEnum, this);
                 singleAlcoholTypeForm.ShowDialog();
             }
         }
