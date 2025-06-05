@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
+using zpo_projekt.Exceptions;
 using zpo_projekt.Repositories;
 
 namespace zpo_projekt.Forms
@@ -54,6 +55,29 @@ namespace zpo_projekt.Forms
 
                 AlcoholRepository alcoholRepository = new AlcoholRepository();
                 FillEntityDataFromForm(ref alcoholEntity);
+
+                Alcohol alcohol = AlcoholFactory.make(alcoholEntity);
+
+                try
+                {
+                    alcohol.ValidateOrThrow();
+                }
+                catch(ZeroAlcoholPercentageNotAllowedException ex)
+                {
+                    MessageBox.Show("Dla tego typu alkoholu nie jest dozwolone 0 jako zawartość % alkoholu");
+                    return;
+                }
+                catch(AlcoholPercentageIsTooBigException ex)
+                {
+                    MessageBox.Show("Wprowadzona zawartość alkoholu jest za duża dla tego typu alkoholu");
+                    return;
+                }
+                catch(AlcoholPercentageIsTooLowException ex)
+                {
+                    MessageBox.Show("Wprowadzona zawartość alkoholu jest za mała dla tego typu alkoholu");
+                    return;
+                }
+               
 
                 if (this.isEditing)
                 {

@@ -31,9 +31,37 @@ namespace zpo_projekt.Alcohols
             this.Count = alcohol.Count;
         }
 
+        public void ValidateOrThrow()
+        {
+            if (Percentage > MaxPercentageAllowed())
+            {
+                throw new AlcoholPercentageIsTooBigException();
+            }
+
+            if (Percentage < MinPercentageAllowed())
+            {
+                throw new AlcoholPercentageIsTooLowException();
+            }
+
+            if (Percentage == 0 && !ZeroAlcoholPercentageAllowed())
+            {
+                throw new ZeroAlcoholPercentageNotAllowedException();
+            }
+        }
+
         public virtual int MaxPercentageAllowed()
         {
             return 90;
+        }
+
+        public virtual int MinPercentageAllowed()
+        {
+            return 0;
+        }
+
+        public virtual bool ZeroAlcoholPercentageAllowed()
+        {
+            return false;
         }
     }
 }

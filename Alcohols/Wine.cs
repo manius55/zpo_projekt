@@ -17,5 +17,10 @@ namespace zpo_projekt.Alcohols
         {
             return 18;
         }
+
+        public override bool ZeroAlcoholPercentageAllowed()
+        {
+            return true;
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace zpo_projekt.Alcohols
         {
             return 45;
         }
+
+        public override int MinPercentageAllowed()
+        {
+            return 30;
+        }
     }
 }
