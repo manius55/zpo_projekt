@@ -1,6 +1,6 @@
 ﻿namespace zpo_projekt.Forms
 {
-    partial class AddAlcoholForm
+    partial class AddEditAlcoholForm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@
             AddAlcoholSaveButton.TabIndex = 0;
             AddAlcoholSaveButton.Text = "Zapisz";
             AddAlcoholSaveButton.UseVisualStyleBackColor = true;
-            AddAlcoholSaveButton.Click += AddAlcoholSaveButton_Click;
+            AddAlcoholSaveButton.Click += AlcoholSaveButton_Click;
             // 
             // AddAlcoholCancelButton
             // 
@@ -63,6 +63,7 @@
             AddAlcoholCancelButton.TabIndex = 1;
             AddAlcoholCancelButton.Text = "Anuluj";
             AddAlcoholCancelButton.UseVisualStyleBackColor = true;
+            AddAlcoholCancelButton.Click += AddAlcoholCancelButton_Click;
             // 
             // contextMenuStrip1
             // 
@@ -135,7 +136,7 @@
             alcoholDescriptionLabel.TabIndex = 10;
             alcoholDescriptionLabel.Text = "Opis";
             // 
-            // AddAlcoholForm
+            // AddEditAlcoholForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -150,7 +151,7 @@
             Controls.Add(AlcoholNameTextBox);
             Controls.Add(AddAlcoholCancelButton);
             Controls.Add(AddAlcoholSaveButton);
-            Name = "AddAlcoholForm";
+            Name = "AddEditAlcoholForm";
             Text = "AddAlcoholForm";
             ((System.ComponentModel.ISupportInitialize)AlcoholCountNumericBox).EndInit();
             ResumeLayout(false);

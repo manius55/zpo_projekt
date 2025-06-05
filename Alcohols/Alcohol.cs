@@ -8,7 +8,7 @@ using zpo_projekt.Exceptions;
 
 namespace zpo_projekt.Alcohols
 {
-    abstract internal class Alcohol
+    abstract public class Alcohol
     {
         public int Id { get; set; }
         public string Name { get; set; }
