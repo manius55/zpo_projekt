@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
 using zpo_projekt.Exceptions;
+using zpo_projekt.Interfaces;
 
 namespace zpo_projekt
 {
-    internal static class AlcoholFromEntityMaker
+    internal class AlcoholFromEntityMaker: IMaker
     {
-        public static List<Alcohol> make(List<AlcoholEntity> entities)
+        public static Alcohol make(AlcoholEntity alcoholEntity)
         {
-            List<Alcohol> alcohols = new List<Alcohol>();
-
-            foreach (var entity in entities)
+            switch (alcoholEntity.Type)
             {
-                try
-                {
-                    Alcohol alcohol = AlcoholFactory.make(entity);
-                    alcohols.Add(alcohol);
-                }
-                catch (UnknownAlcoholTypeException)
-                {
-                    MessageBox.Show("Nieznany typ alkoholu, poproś administratora o obsłużenie typu alkoholu o numerze:" + entity.Type);
-                }
+                case 1:
+                    return new Beer(alcoholEntity);
+                case 2:
+                    return new Whiskey(alcoholEntity);
+                case 3:
+                    return new Vodka(alcoholEntity);
+                case 4:
+                    return new Wine(alcoholEntity);
+                case 5:
+                    return new Champaign(alcoholEntity);
+                default:
+                    throw new UnknownAlcoholTypeException();
             }
-
-            return alcohols;
         }
     }
 }
