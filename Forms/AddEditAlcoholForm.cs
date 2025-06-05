@@ -56,7 +56,7 @@ namespace zpo_projekt.Forms
                 AlcoholRepository alcoholRepository = new AlcoholRepository();
                 FillEntityDataFromForm(ref alcoholEntity);
 
-                Alcohol alcohol = AlcoholFactory.make(alcoholEntity);
+                Alcohol alcohol = AlcoholFromEntityMaker.make(alcoholEntity);
 
                 try
                 {

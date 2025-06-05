@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using zpo_projekt.Entities;
 using zpo_projekt.Exceptions;
+using zpo_projekt.Interfaces;
 
 namespace zpo_projekt.Alcohols
 {
-    abstract public class Alcohol
+    abstract public class Alcohol: IValidable
     {
         public int Id { get; set; }
         public string Name { get; set; }

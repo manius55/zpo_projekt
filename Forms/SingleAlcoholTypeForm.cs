@@ -31,7 +31,7 @@ namespace zpo_projekt
         private void LoadDataForForm()
         {
             List<AlcoholEntity> alcoholsEntities = (new AlcoholRepository()).getAllAlcoholsByType(AlcoholType);
-            List<Alcohol> alcohols = AlcoholFromEntityMaker.make(alcoholsEntities);
+            List<Alcohol> alcohols = AlcoholsFromEntitiesMaker.make(alcoholsEntities);
 
 
             DataGridView alcoholsGridView = alcoholsList;
@@ -119,7 +119,7 @@ namespace zpo_projekt
                     int alcoholIdInt = Convert.ToInt32(alcoholId);
 
                     AlcoholEntity alcoholEntity = (new AlcoholRepository()).getById(alcoholIdInt);
-                    var alcohol = AlcoholFactory.make(alcoholEntity);
+                    var alcohol = AlcoholFromEntityMaker.make(alcoholEntity);
 
                     var editAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this, alcohol);
                     editAlcoholForm.ShowDialog();

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zpo_projekt
+namespace zpo_projekt.Interfaces
 {
     internal interface IValidable
     {

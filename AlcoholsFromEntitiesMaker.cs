@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
 using zpo_projekt.Exceptions;
+using zpo_projekt.Interfaces;
 
 namespace zpo_projekt
 {
-    internal static class AlcoholFromEntityMaker
+    internal class AlcoholsFromEntitiesMaker: IMaker
     {
         public static List<Alcohol> make(List<AlcoholEntity> entities)
         {
@@ -20,7 +21,7 @@ namespace zpo_projekt
             {
                 try
                 {
-                    Alcohol alcohol = AlcoholFactory.make(entity);
+                    Alcohol alcohol = AlcoholFromEntityMaker.make(entity);
                     alcohols.Add(alcohol);
                 }
                 catch (UnknownAlcoholTypeException)

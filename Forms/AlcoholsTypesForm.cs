@@ -94,7 +94,7 @@ namespace zpo_projekt.Forms
                 try
                 {
                     List<AlcoholEntity> alcoholEntities = alcoholRepository.getAllAlcoholsByType(type);
-                    List<Alcohol> alcohols = AlcoholFromEntityMaker.make(alcoholEntities);
+                    List<Alcohol> alcohols = AlcoholsFromEntitiesMaker.make(alcoholEntities);
                     alcoholsByTypes.Add(type, alcohols);
                 }
                 catch (Exception ex)
