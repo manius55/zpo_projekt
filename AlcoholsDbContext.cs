@@ -17,9 +17,7 @@ namespace zpo_projekt
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            var projectDir = Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
-            var dbPath = Path.Combine(projectDir, "alcohols.db");
+            var dbPath = Config.GetInstance().DatabasePath;
 
             optionsBuilder
                 .UseSqlite($"Data Source={dbPath}")
