@@ -8,7 +8,7 @@ namespace zpo_projekt
 {
     public partial class SingleAlcoholTypeForm : Form
     {
-        private AlcoholType AlcoholType {  get; set; }
+        private AlcoholType AlcoholType { get; set; }
 
         public SingleAlcoholTypeForm(AlcoholType alcoholType)
         {
@@ -59,6 +59,11 @@ namespace zpo_projekt
             alcoholsGridView.Columns.Add(productsCount);
 
             alcoholsGridView.DataSource = alcohols;
+        }
+
+        private void AddAlcohol_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
