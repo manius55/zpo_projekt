@@ -62,6 +62,7 @@ namespace zpo_projekt.Forms
                 MessageBox.Show("Udało się utworzyć produkt");
             }
 
+            ParentForm.ReloadData();
             this.Close();
         }
 

@@ -19,7 +19,7 @@ namespace zpo_projekt
             this.Load += loadFormData;
         }
 
-        private void loadFormData(object sender, EventArgs e)
+        public void ReloadData()
         {
             List<AlcoholEntity> alcoholsEntities = (new AlcoholRepository()).getAllAlcoholsByType(AlcoholType);
             List<Alcohol> alcohols = AlcoholFromEntityMaker.make(alcoholsEntities);
@@ -61,6 +61,11 @@ namespace zpo_projekt
             alcoholsGridView.Columns.Add(productsCount);
 
             alcoholsGridView.DataSource = alcohols;
+        }
+
+        private void loadFormData(object sender, EventArgs e)
+        {
+            ReloadData();
         }
 
         private void AddAlcohol_Click(object sender, EventArgs e)
