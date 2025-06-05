@@ -1,6 +1,6 @@
 ﻿namespace zpo_projekt
 {
-    partial class AlcoholTypeView
+    partial class SingleAlcoholTypeForm
     {
         /// <summary>
         ///  Required designer variable.

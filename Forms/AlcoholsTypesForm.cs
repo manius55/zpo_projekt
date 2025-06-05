@@ -31,10 +31,17 @@ namespace zpo_projekt.Forms
             DataGridView alcoholsTypesGrid = alcoholsTypeForm;
             alcoholsTypesGrid.AutoGenerateColumns = false;
 
+            var alcoholTypeNameColumn = new DataGridViewTextBoxColumn();
+            alcoholTypeNameColumn.DataPropertyName = "TypeName";
+            alcoholTypeNameColumn.HeaderText = "Rodzaj alkoholu";
+            alcoholTypeNameColumn.ReadOnly = true;
+
             var alcoholTypeColumn = new DataGridViewTextBoxColumn();
-            alcoholTypeColumn.DataPropertyName = "TypeName";
-            alcoholTypeColumn.HeaderText = "Rodzaj alkoholu";
+            alcoholTypeColumn.DataPropertyName = "Type";
+            alcoholTypeColumn.Name = "Type";
+            alcoholTypeColumn.HeaderText = "Type";
             alcoholTypeColumn.ReadOnly = true;
+            alcoholTypeColumn.Visible = false;
 
             var alcoholDifferentTypesCount = new DataGridViewTextBoxColumn();
             alcoholDifferentTypesCount.DataPropertyName = "DifferentProductsCount";
@@ -46,9 +53,23 @@ namespace zpo_projekt.Forms
             alcoholproductsCount.HeaderText = "Ilość łączna produktów";
             alcoholproductsCount.ReadOnly = true;
 
+            var buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.HeaderText = "Podgląd";
+            buttonColumn.Text = "Podejrzyj";
+            buttonColumn.Name = "Show";
+
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+
+            alcoholsTypesGrid.Columns.Add(alcoholTypeNameColumn);
             alcoholsTypesGrid.Columns.Add(alcoholTypeColumn);
             alcoholsTypesGrid.Columns.Add(alcoholDifferentTypesCount);
             alcoholsTypesGrid.Columns.Add(alcoholproductsCount);
+            alcoholsTypesGrid.Columns.Add(buttonColumn);
+
+
+            alcoholsTypesGrid.CellContentClick += showButtonClick;
+
 
             alcoholsTypesGrid.DataSource = sourceData;
         }
@@ -116,6 +137,20 @@ namespace zpo_projekt.Forms
 
 
             return alcoholsTypesResources;
+        }
+
+        private void showButtonClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == ((DataGridView)sender).Columns["Show"].Index && e.RowIndex >= 0)
+            {
+
+                var alcoholTypeString = ((DataGridView)sender).Rows[e.RowIndex].Cells["Type"].Value.ToString();
+                int alcoholTypeInt = int.Parse(alcoholTypeString);
+                AlcoholType alcoholTypeEnum = (AlcoholType)alcoholTypeInt;
+
+                var singleAlcoholTypeForm = new SingleAlcoholTypeForm(alcoholTypeEnum);
+                singleAlcoholTypeForm.ShowDialog();
+            }
         }
     }
 }

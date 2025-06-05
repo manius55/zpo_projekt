@@ -2,28 +2,26 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
+using zpo_projekt.Repositories;
 
 namespace zpo_projekt
 {
-    public partial class AlcoholTypeView : Form
+    public partial class SingleAlcoholTypeForm : Form
     {
-        public AlcoholTypeView()
+        private AlcoholType AlcoholType {  get; set; }
+
+        public SingleAlcoholTypeForm(AlcoholType alcoholType)
         {
+            this.AlcoholType = alcoholType;
             InitializeComponent();
             this.Load += loadFormData;
         }
 
         private void loadFormData(object sender, EventArgs e)
         {
-            var context = new AlcoholsDbContext();
-            List<AlcoholEntity> alcoholsEntities = context.Alcohols.ToList();
-            List<Alcohol> alcohols = new List<Alcohol>();
+            List<AlcoholEntity> alcoholsEntities = (new AlcoholRepository()).getAllAlcoholsByType(AlcoholType);
+            List<Alcohol> alcohols = AlcoholFromEntityMaker.make(alcoholsEntities);
 
-            foreach(AlcoholEntity alcoholEntity in alcoholsEntities)
-            {
-                Alcohol alcohol = AlcoholFactory.make(alcoholEntity);
-                alcohols.Add(alcohol);
-            }
 
             DataGridView alcoholsGridView = alcoholsList;
             alcoholsGridView.AutoGenerateColumns = false;
@@ -47,10 +45,18 @@ namespace zpo_projekt
             typeColumn.HeaderText = "Typ alkoholu";
             typeColumn.ReadOnly = true;
 
+
+            var productsCount = new DataGridViewTextBoxColumn();
+            productsCount.DataPropertyName = "Count";
+            productsCount.HeaderText = "Iloœæ produktów";
+            productsCount.ReadOnly = true;
+
+
             alcoholsGridView.Columns.Add(idColumn);
             alcoholsGridView.Columns.Add(typeColumn);
             alcoholsGridView.Columns.Add(nameColumn);
             alcoholsGridView.Columns.Add(percentageColumn);
+            alcoholsGridView.Columns.Add(productsCount);
 
             alcoholsGridView.DataSource = alcohols;
         }

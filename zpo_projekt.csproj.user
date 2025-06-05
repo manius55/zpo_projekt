@@ -4,7 +4,7 @@
     <Compile Update="Forms\AlcoholsTypesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\AlcoholTypeView.cs">
+    <Compile Update="Forms\SingleAlcoholTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
