@@ -28,10 +28,12 @@ namespace zpo_projekt.Forms
             this.ParentForm = parentForm;
         }
 
-        public AddEditAlcoholForm(AlcoholType alcoholType,Alcohol alcohol)
+        public AddEditAlcoholForm(AlcoholType alcoholType, SingleAlcoholTypeForm parentForm, Alcohol alcohol)
         {
             InitializeComponent();
             this.alcohol = alcohol;
+            this.ParentForm = parentForm;
+            this.AlcoholType = alcoholType;
             this.Load += LoadAlcoholInitialDataForEdit;
             this.isEditing = true;
         }

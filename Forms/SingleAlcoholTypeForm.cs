@@ -45,7 +45,8 @@ namespace zpo_projekt
 
             var idColumn = new DataGridViewTextBoxColumn();
             idColumn.DataPropertyName = "Id";
-            idColumn.Visible = false; //bez sensu pokazywac uzytkownikowi id
+            idColumn.Visible = false;
+            idColumn.Name = "Id";
 
             var nameColumn = new DataGridViewTextBoxColumn();
             nameColumn.DataPropertyName = "Name";
@@ -69,11 +70,23 @@ namespace zpo_projekt
             productsCount.ReadOnly = true;
 
 
+
+            var buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.HeaderText = "Edycja";
+            buttonColumn.Text = "Edytuj";
+            buttonColumn.Name = "Edit";
+
+            buttonColumn.UseColumnTextForButtonValue = true;
+
             alcoholsGridView.Columns.Add(idColumn);
             alcoholsGridView.Columns.Add(typeColumn);
             alcoholsGridView.Columns.Add(nameColumn);
             alcoholsGridView.Columns.Add(percentageColumn);
             alcoholsGridView.Columns.Add(productsCount);
+            alcoholsGridView.Columns.Add(buttonColumn);
+
+
+            alcoholsGridView.CellContentClick += EditButtonClick;
         }
 
         private void loadInitialFormData(object sender, EventArgs e)
@@ -86,6 +99,22 @@ namespace zpo_projekt
         {
             var addAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this);
             addAlcoholForm.ShowDialog();
+        }
+
+        private void EditButtonClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == ((DataGridView)sender).Columns["Edit"].Index && e.RowIndex >= 0)
+            {
+                Debug.WriteLine($"SPRAWDZAM ID: {((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value}");
+                string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                int alcoholIdInt = Convert.ToInt32(alcoholId);
+
+                AlcoholEntity alcoholEntity = (new AlcoholRepository()).getById(alcoholIdInt);
+                var alcohol = AlcoholFactory.make(alcoholEntity);
+
+                var editAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this, alcohol);
+                editAlcoholForm.ShowDialog();
+            }
         }
     }
 }
