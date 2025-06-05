@@ -35,12 +35,13 @@
             AlcoholNameTextBox = new TextBox();
             alcoholDescriptionTextBox = new TextBox();
             AlcoholCountNumericBox = new NumericUpDown();
-            alcoholPercentageTextBox = new TextBox();
             alcoholNameLabel = new Label();
             alcoholPercentageLabel = new Label();
             alcoholCountLabel = new Label();
             alcoholDescriptionLabel = new Label();
+            AlcoholPercentageNumericBox = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)AlcoholCountNumericBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)AlcoholPercentageNumericBox).BeginInit();
             SuspendLayout();
             // 
             // AddAlcoholSaveButton
@@ -93,13 +94,6 @@
             AlcoholCountNumericBox.Size = new Size(150, 27);
             AlcoholCountNumericBox.TabIndex = 5;
             // 
-            // alcoholPercentageTextBox
-            // 
-            alcoholPercentageTextBox.Location = new Point(250, 141);
-            alcoholPercentageTextBox.Name = "alcoholPercentageTextBox";
-            alcoholPercentageTextBox.Size = new Size(125, 27);
-            alcoholPercentageTextBox.TabIndex = 6;
-            // 
             // alcoholNameLabel
             // 
             alcoholNameLabel.AutoSize = true;
@@ -136,16 +130,24 @@
             alcoholDescriptionLabel.TabIndex = 10;
             alcoholDescriptionLabel.Text = "Opis";
             // 
+            // AlcoholPercentageNumericBox
+            // 
+            AlcoholPercentageNumericBox.DecimalPlaces = 1;
+            AlcoholPercentageNumericBox.Location = new Point(250, 141);
+            AlcoholPercentageNumericBox.Name = "AlcoholPercentageNumericBox";
+            AlcoholPercentageNumericBox.Size = new Size(150, 27);
+            AlcoholPercentageNumericBox.TabIndex = 11;
+            // 
             // AddEditAlcoholForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(AlcoholPercentageNumericBox);
             Controls.Add(alcoholDescriptionLabel);
             Controls.Add(alcoholCountLabel);
             Controls.Add(alcoholPercentageLabel);
             Controls.Add(alcoholNameLabel);
-            Controls.Add(alcoholPercentageTextBox);
             Controls.Add(AlcoholCountNumericBox);
             Controls.Add(alcoholDescriptionTextBox);
             Controls.Add(AlcoholNameTextBox);
@@ -154,6 +156,7 @@
             Name = "AddEditAlcoholForm";
             Text = "AddAlcoholForm";
             ((System.ComponentModel.ISupportInitialize)AlcoholCountNumericBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)AlcoholPercentageNumericBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,10 +169,10 @@
         private TextBox AlcoholNameTextBox;
         private TextBox alcoholDescriptionTextBox;
         private NumericUpDown AlcoholCountNumericBox;
-        private TextBox alcoholPercentageTextBox;
         private Label alcoholNameLabel;
         private Label alcoholPercentageLabel;
         private Label alcoholCountLabel;
         private Label alcoholDescriptionLabel;
+        private NumericUpDown AlcoholPercentageNumericBox;
     }
 }

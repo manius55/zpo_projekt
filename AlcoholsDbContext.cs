@@ -20,7 +20,6 @@ namespace zpo_projekt
             var baseDir = AppDomain.CurrentDomain.BaseDirectory;
             var projectDir = Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
             var dbPath = Path.Combine(projectDir, "alcohols.db");
-            Debug.WriteLine(dbPath);
 
             optionsBuilder
                 .UseSqlite($"Data Source={dbPath}")

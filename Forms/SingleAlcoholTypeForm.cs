@@ -1,7 +1,9 @@
 using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
+using zpo_projekt.Forms;
 using zpo_projekt.Repositories;
 
 namespace zpo_projekt
@@ -63,7 +65,8 @@ namespace zpo_projekt
 
         private void AddAlcohol_Click(object sender, EventArgs e)
         {
-
+            var addAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this);
+            addAlcoholForm.ShowDialog();
         }
     }
 }
