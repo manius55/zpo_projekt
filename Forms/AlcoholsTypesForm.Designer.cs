@@ -35,20 +35,20 @@
             // alcoholsTypeForm
             // 
             alcoholsTypeForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            alcoholsTypeForm.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            alcoholsTypeForm.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             alcoholsTypeForm.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             alcoholsTypeForm.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            alcoholsTypeForm.Location = new Point(157, 65);
+            alcoholsTypeForm.Location = new Point(98, 49);
             alcoholsTypeForm.Name = "alcoholsTypeForm";
             alcoholsTypeForm.RowHeadersWidth = 51;
-            alcoholsTypeForm.Size = new Size(505, 307);
+            alcoholsTypeForm.Size = new Size(754, 421);
             alcoholsTypeForm.TabIndex = 1;
             // 
             // AlcoholsTypesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(970, 529);
             Controls.Add(alcoholsTypeForm);
             Name = "AlcoholsTypesForm";
             Text = "AlcoholsTypesForm";

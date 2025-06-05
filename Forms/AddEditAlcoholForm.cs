@@ -48,24 +48,31 @@ namespace zpo_projekt.Forms
 
         private void AlcoholSaveButton_Click(object sender, EventArgs e)
         {
-            AlcoholEntity alcoholEntity = this.isEditing ? this.alcohol.AlcoholEntity : new AlcoholEntity();
-            
-            AlcoholRepository alcoholRepository = new AlcoholRepository();
-            FillEntityDataFromForm(ref alcoholEntity);
-
-            if (this.isEditing)
+            try
             {
-                alcoholRepository.Update(alcoholEntity);
-                MessageBox.Show("Udało się zaktualizować produkt");
-            }
-            else
-            {
-                alcoholRepository.Add(alcoholEntity);
-                MessageBox.Show("Udało się utworzyć produkt");
-            }
+                AlcoholEntity alcoholEntity = this.isEditing ? this.alcohol.AlcoholEntity : new AlcoholEntity();
 
-            ParentForm.ReloadData();
-            this.Close();
+                AlcoholRepository alcoholRepository = new AlcoholRepository();
+                FillEntityDataFromForm(ref alcoholEntity);
+
+                if (this.isEditing)
+                {
+                    alcoholRepository.Update(alcoholEntity);
+                    MessageBox.Show("Udało się zaktualizować produkt");
+                }
+                else
+                {
+                    alcoholRepository.Add(alcoholEntity);
+                    MessageBox.Show("Udało się utworzyć produkt");
+                }
+
+                ParentForm.ReloadData();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił nieoczekiwany błąd: " + ex.Message);
+            }
         }
 
         private void FillEntityDataFromForm(ref AlcoholEntity alcoholEntity)

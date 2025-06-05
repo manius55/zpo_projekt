@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Windows.Forms;
@@ -110,33 +111,47 @@ namespace zpo_projekt
 
         private void EditButtonClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == ((DataGridView)sender).Columns["Edit"].Index && e.RowIndex >= 0)
+            try
             {
-                string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
-                int alcoholIdInt = Convert.ToInt32(alcoholId);
+                if (e.ColumnIndex == ((DataGridView)sender).Columns["Edit"].Index && e.RowIndex >= 0)
+                {
+                    string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                    int alcoholIdInt = Convert.ToInt32(alcoholId);
 
-                AlcoholEntity alcoholEntity = (new AlcoholRepository()).getById(alcoholIdInt);
-                var alcohol = AlcoholFactory.make(alcoholEntity);
+                    AlcoholEntity alcoholEntity = (new AlcoholRepository()).getById(alcoholIdInt);
+                    var alcohol = AlcoholFactory.make(alcoholEntity);
 
-                var editAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this, alcohol);
-                editAlcoholForm.ShowDialog();
+                    var editAlcoholForm = new AddEditAlcoholForm(this.AlcoholType, this, alcohol);
+                    editAlcoholForm.ShowDialog();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Wyst¹pi³ niespodziewany wyj¹tek: " + exception.Message);
             }
         }
 
         private void DeleteButtonClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == ((DataGridView)sender).Columns["Remove"].Index && e.RowIndex >= 0)
+            try
             {
-                string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
-                int alcoholIdInt = Convert.ToInt32(alcoholId);
+                if (e.ColumnIndex == ((DataGridView)sender).Columns["Remove"].Index && e.RowIndex >= 0)
+                {
+                    string alcoholId = ((DataGridView)sender).Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                    int alcoholIdInt = Convert.ToInt32(alcoholId);
 
-                var repository = new AlcoholRepository();
-                AlcoholEntity alcoholEntity = repository.getById(alcoholIdInt);
-                
-                repository.Remove(alcoholEntity);
+                    var repository = new AlcoholRepository();
+                    AlcoholEntity alcoholEntity = repository.getById(alcoholIdInt);
 
-                MessageBox.Show("Uda³o siê usun¹æ produkt");
-                this.ReloadData();
+                    repository.Remove(alcoholEntity);
+
+                    MessageBox.Show("Uda³o siê usun¹æ produkt");
+                    this.ReloadData();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Wyst¹pi³ niespodziewany wyj¹tek: " + exception.Message);
             }
         }
     }

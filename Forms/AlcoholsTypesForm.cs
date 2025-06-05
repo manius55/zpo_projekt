@@ -150,15 +150,22 @@ namespace zpo_projekt.Forms
 
         private void showButtonClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == ((DataGridView)sender).Columns["Show"].Index && e.RowIndex >= 0)
+            try
             {
+                if (e.ColumnIndex == ((DataGridView)sender).Columns["Show"].Index && e.RowIndex >= 0)
+                {
 
-                var alcoholTypeString = ((DataGridView)sender).Rows[e.RowIndex].Cells["Type"].Value.ToString();
-                int alcoholTypeInt = int.Parse(alcoholTypeString);
-                AlcoholType alcoholTypeEnum = (AlcoholType)alcoholTypeInt;
+                    var alcoholTypeString = ((DataGridView)sender).Rows[e.RowIndex].Cells["Type"].Value.ToString();
+                    int alcoholTypeInt = int.Parse(alcoholTypeString);
+                    AlcoholType alcoholTypeEnum = (AlcoholType)alcoholTypeInt;
 
-                var singleAlcoholTypeForm = new SingleAlcoholTypeForm(alcoholTypeEnum, this);
-                singleAlcoholTypeForm.ShowDialog();
+                    var singleAlcoholTypeForm = new SingleAlcoholTypeForm(alcoholTypeEnum, this);
+                    singleAlcoholTypeForm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił nieoczekiwany błąd: " + ex.Message);
             }
         }
     }
