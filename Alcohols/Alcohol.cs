@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using zpo_projekt.Entities;
 using zpo_projekt.Exceptions;
 using zpo_projekt.Interfaces;
+using zpo_projekt.Repositories;
 
 namespace zpo_projekt.Alcohols
 {
@@ -47,6 +48,13 @@ namespace zpo_projekt.Alcohols
             if (Percentage == 0 && !ZeroAlcoholPercentageAllowed())
             {
                 throw new ZeroAlcoholPercentageNotAllowedException();
+            }
+            AlcoholRepository alcoholRepository = new AlcoholRepository();
+            int allProductsCount = alcoholRepository.CountAllAlcoholProducts();
+
+            if (Count + allProductsCount > Config.GetInstance().MaxProductCount)
+            {
+                throw new MaxProducsFromConfigExceededException();
             }
         }
 

@@ -19,5 +19,19 @@ namespace zpo_projekt.Repositories
         {
             return base.getAll().Where(x => x.Type == (int)type).ToList();
         }
+
+        public int CountAllAlcoholProducts()
+        {
+            int productsCount = 0;
+
+            var alcohols = getAll();
+
+            foreach (var alcohol in alcohols)
+            {
+                productsCount += alcohol.Count;
+            }
+
+            return productsCount;
+        }
     }
 }

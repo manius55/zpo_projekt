@@ -77,6 +77,11 @@ namespace zpo_projekt.Forms
                     MessageBox.Show("Wprowadzona zawartość alkoholu jest za mała dla tego typu alkoholu");
                     return;
                 }
+                catch(MaxProducsFromConfigExceededException ex)
+                {
+                    MessageBox.Show("Przekroczono dopuszczalna liczbe napojow alkoholowych. Sprawdź config");
+                    return;
+                }
                
 
                 if (this.isEditing)
