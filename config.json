@@ -1,4 +1,4 @@
 {
-  "DatabasePath": "C:\\Users\\maniu\\projects\\ZPO\\zpo_projekt\\alcohols.db",
-  "MaxProductCount": 105
+  "DatabasePath": "testPath",
+  "MaxProductCount": 25
 }
