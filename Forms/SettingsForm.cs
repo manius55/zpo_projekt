@@ -12,19 +12,38 @@ namespace zpo_projekt.Forms
 {
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
+        private AlcoholsTypesForm ParentForm {  get; set; }
+
+
+        public SettingsForm(AlcoholsTypesForm alcoholsTypesForm)
         {
             InitializeComponent();
+            this.Load += LoadFormData;
+            this.ParentForm = alcoholsTypesForm;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void LoadFormData(object sender, EventArgs e)
         {
+            Config config = Config.GetInstance();
 
+            DatabsePathText.Text = config.DatabasePath;
+            MaxAlcoholProductsNumericBox.Value = config.MaxProductCount;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void SaveSettingsButton_Click(object sender, EventArgs e)
         {
+            Config config = Config.GetInstance();
+            config.MaxProductCount = Convert.ToInt32(MaxAlcoholProductsNumericBox.Value);
+            config.DatabasePath = DatabsePathText.Text;
+            config.Save();
+            MessageBox.Show("Udało się zaktualizować ustawienia");
+            ParentForm.Reload();
+            this.Close();
+        }
 
+        private void CancelSettingsButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Diagnostics;
+using System.IO;
 
 namespace zpo_projekt
 {
@@ -38,9 +40,34 @@ namespace zpo_projekt
             return Instance;
         }
 
+        public void Save()
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(this, options);
+            File.WriteAllText(getConfigPath(), json);
+        }
+
         private static Config Load()
         {
+            string json = File.ReadAllText(getConfigPath());
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Deserialize<Config>(json, options);
+        }
+
+        private static string getConfigPath()
+        {
             string path;
+
             if (ConfigFilePath == null)
             {
                 var baseDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -52,15 +79,8 @@ namespace zpo_projekt
                 path = ConfigFilePath;
             }
 
-            string json = File.ReadAllText(path);
+            return path;
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                WriteIndented = true
-            };
-
-            return JsonSerializer.Deserialize<Config>(json, options);
         }
     }
 }

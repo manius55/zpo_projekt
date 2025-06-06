@@ -1,4 +1,5 @@
-﻿using SQLitePCL;
+﻿using Microsoft.Data.Sqlite;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using zpo_projekt.Alcohols;
 using zpo_projekt.Entities;
+using zpo_projekt.Exceptions;
 using zpo_projekt.Repositories;
 
 namespace zpo_projekt.Forms
@@ -88,6 +90,7 @@ namespace zpo_projekt.Forms
             AlcoholRepository alcoholRepository = new AlcoholRepository();
             Dictionary<AlcoholType, List<Alcohol>> alcoholsByTypes = new Dictionary<AlcoholType, List<Alcohol>>();
             bool errorsOccured = false;
+            bool databaseConnectionErrorOccured = false;
 
             foreach (AlcoholType type in Enum.GetValues(typeof(AlcoholType)))
             {
@@ -97,6 +100,11 @@ namespace zpo_projekt.Forms
                     List<Alcohol> alcohols = AlcoholsFromEntitiesMaker.make(alcoholEntities);
                     alcoholsByTypes.Add(type, alcohols);
                 }
+                catch (SqliteException)
+                {
+                    errorsOccured = true;
+                    databaseConnectionErrorOccured = true;
+                }
                 catch (Exception ex)
                 {
                     errorsOccured = true;
@@ -105,7 +113,11 @@ namespace zpo_projekt.Forms
 
             }
 
-            if (errorsOccured)
+            if (errorsOccured && databaseConnectionErrorOccured)
+            {
+                MessageBox.Show("Wystąpił błąd przy łączeniu z bazą danych, spróbuj zmienić ścieżkę w ustawieniach");
+            }
+            else if (errorsOccured)
             {
                 MessageBox.Show("Wystąpił błąd, niektóre typy alkoholi mogą nie wyświetlać się poprawnie.");
             }
@@ -124,7 +136,7 @@ namespace zpo_projekt.Forms
                     {
                         productsCount += alcohol.Count;
                     }
-                    
+
                     AlcoholsTypesResource resource = new AlcoholsTypesResource(
                         (int)type,
                         alcoholTypeList.Count,
@@ -168,6 +180,12 @@ namespace zpo_projekt.Forms
             {
                 MessageBox.Show("Wystąpił nieoczekiwany błąd: " + ex.Message);
             }
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            var form = new SettingsForm(this);
+            form.ShowDialog();
         }
     }
 }

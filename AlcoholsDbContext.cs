@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using zpo_projekt.Entities;
+using zpo_projekt.Exceptions;
 
 namespace zpo_projekt
 {

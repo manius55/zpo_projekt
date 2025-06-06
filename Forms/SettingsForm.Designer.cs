@@ -32,6 +32,8 @@
             MaxAlcoholProductsNumericBox = new NumericUpDown();
             label1 = new Label();
             label2 = new Label();
+            SaveSettingsButton = new Button();
+            CancelSettingsButton = new Button();
             ((System.ComponentModel.ISupportInitialize)MaxAlcoholProductsNumericBox).BeginInit();
             SuspendLayout();
             // 
@@ -42,7 +44,6 @@
             DatabsePathText.Name = "DatabsePathText";
             DatabsePathText.Size = new Size(535, 27);
             DatabsePathText.TabIndex = 0;
-            DatabsePathText.TextChanged += textBox1_TextChanged;
             // 
             // MaxAlcoholProductsNumericBox
             // 
@@ -51,7 +52,6 @@
             MaxAlcoholProductsNumericBox.Name = "MaxAlcoholProductsNumericBox";
             MaxAlcoholProductsNumericBox.Size = new Size(150, 27);
             MaxAlcoholProductsNumericBox.TabIndex = 1;
-            MaxAlcoholProductsNumericBox.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label1
             // 
@@ -71,11 +71,33 @@
             label2.TabIndex = 3;
             label2.Text = "Maksymalna ilość produktów alkoholowych";
             // 
+            // SaveSettingsButton
+            // 
+            SaveSettingsButton.Location = new Point(875, 459);
+            SaveSettingsButton.Name = "SaveSettingsButton";
+            SaveSettingsButton.Size = new Size(165, 29);
+            SaveSettingsButton.TabIndex = 4;
+            SaveSettingsButton.Text = "Zapisz";
+            SaveSettingsButton.UseVisualStyleBackColor = true;
+            SaveSettingsButton.Click += SaveSettingsButton_Click;
+            // 
+            // CancelSettingsButton
+            // 
+            CancelSettingsButton.Location = new Point(12, 459);
+            CancelSettingsButton.Name = "CancelSettingsButton";
+            CancelSettingsButton.Size = new Size(165, 29);
+            CancelSettingsButton.TabIndex = 6;
+            CancelSettingsButton.Text = "Anuluj";
+            CancelSettingsButton.UseVisualStyleBackColor = true;
+            CancelSettingsButton.Click += CancelSettingsButton_Click;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1052, 579);
+            Controls.Add(CancelSettingsButton);
+            Controls.Add(SaveSettingsButton);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(MaxAlcoholProductsNumericBox);
@@ -93,5 +115,7 @@
         private NumericUpDown MaxAlcoholProductsNumericBox;
         private Label label1;
         private Label label2;
+        private Button SaveSettingsButton;
+        private Button CancelSettingsButton;
     }
 }
