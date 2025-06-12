@@ -1,7 +1,4 @@
 obj/
 .vs/
 bin/
-alcohols.db
-alcohols.db-shm
-alcohols.db-wal
 config.json
