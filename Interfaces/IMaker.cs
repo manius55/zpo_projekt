@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace zpo_projekt.Interfaces
 {
-    internal interface IMaker
+    internal interface IMaker<TInput, TOutput>
     {
+        TOutput make(TInput input);
     }
 }

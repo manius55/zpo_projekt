@@ -97,7 +97,8 @@ namespace zpo_projekt.Forms
                 try
                 {
                     List<AlcoholEntity> alcoholEntities = alcoholRepository.getAllAlcoholsByType(type);
-                    List<Alcohol> alcohols = AlcoholsFromEntitiesMaker.make(alcoholEntities);
+                    var alcoholsFromEntitiesMaker = new AlcoholsFromEntitiesMaker();
+                    List<Alcohol> alcohols = alcoholsFromEntitiesMaker.make(alcoholEntities);
                     alcoholsByTypes.Add(type, alcohols);
                 }
                 catch (SqliteException)

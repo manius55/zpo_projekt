@@ -10,9 +10,9 @@ using zpo_projekt.Interfaces;
 
 namespace zpo_projekt
 {
-    internal class AlcoholFromEntityMaker: IMaker
+    internal class AlcoholFromEntityMaker: IMaker<AlcoholEntity, Alcohol>
     {
-        public static Alcohol make(AlcoholEntity alcoholEntity)
+        public Alcohol make(AlcoholEntity alcoholEntity)
         {
             switch (alcoholEntity.Type)
             {

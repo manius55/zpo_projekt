@@ -11,9 +11,9 @@ using zpo_projekt.Interfaces;
 
 namespace zpo_projekt
 {
-    internal class AlcoholsFromEntitiesMaker: IMaker
+    internal class AlcoholsFromEntitiesMaker: IMaker<List<AlcoholEntity>, List<Alcohol>>
     {
-        public static List<Alcohol> make(List<AlcoholEntity> entities)
+        public List<Alcohol> make(List<AlcoholEntity> entities)
         {
             List<Alcohol> alcohols = new List<Alcohol>();
 
@@ -21,7 +21,8 @@ namespace zpo_projekt
             {
                 try
                 {
-                    Alcohol alcohol = AlcoholFromEntityMaker.make(entity);
+                    var alcoholFromEntityMaker = new AlcoholFromEntityMaker();
+                    Alcohol alcohol = alcoholFromEntityMaker.make(entity);
                     alcohols.Add(alcohol);
                 }
                 catch (UnknownAlcoholTypeException)
